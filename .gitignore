@@ -1,0 +1,39 @@
+# Build output
+/dist/
+
+# npm (image optimize / local tooling)
+**/node_modules/
+tools/package-lock.json
+
+# Design references (not part of the theme install)
+/references/
+/references.zip
+
+# Local notes
+/details.txt
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Editors / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Logs / caches
+*.log
+npm-debug.log*
+.cache/
+.tmp/
+temp/
+
+# Env / secrets
+.env
+.env.*
+!.env.example

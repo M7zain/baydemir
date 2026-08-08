@@ -1,0 +1,82 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "720px",
+			"wideSize": "1280px"
+		},
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{ "slug": "background", "color": "#07090f", "name": "Background" },
+				{ "slug": "surface", "color": "#0f1420", "name": "Surface" },
+				{ "slug": "surface-elevated", "color": "#161d2e", "name": "Surface Elevated" },
+				{ "slug": "border", "color": "#243049", "name": "Border" },
+				{ "slug": "foreground", "color": "#ffffff", "name": "Foreground" },
+				{ "slug": "muted", "color": "#a8b0c0", "name": "Muted" },
+				{ "slug": "accent", "color": "#2f7dff", "name": "Accent" },
+				{ "slug": "accent-hover", "color": "#4d91ff", "name": "Accent Hover" }
+			]
+		},
+		"typography": {
+			"fluid": true,
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+					"name": "Plus Jakarta Sans",
+					"slug": "jakarta"
+				},
+				{
+					"fontFamily": "\"Manrope\", system-ui, sans-serif",
+					"name": "Manrope",
+					"slug": "manrope"
+				}
+			],
+			"fontSizes": [
+				{ "slug": "sm", "size": "0.875rem", "name": "Small" },
+				{ "slug": "base", "size": "1rem", "name": "Base" },
+				{ "slug": "lg", "size": "1.25rem", "name": "Large" },
+				{ "slug": "xl", "size": "1.5rem", "name": "XL" },
+				{ "slug": "2xl", "size": "2rem", "name": "2XL" },
+				{ "slug": "3xl", "size": "2.75rem", "name": "3XL" },
+				{ "slug": "hero", "size": "clamp(2.5rem, 5vw, 4.5rem)", "name": "Hero" }
+			]
+		},
+		"spacing": {
+			"spacingSizes": [
+				{ "slug": "sm", "size": "1rem", "name": "Small" },
+				{ "slug": "md", "size": "1.5rem", "name": "Medium" },
+				{ "slug": "lg", "size": "2rem", "name": "Large" },
+				{ "slug": "xl", "size": "3rem", "name": "XL" },
+				{ "slug": "section", "size": "clamp(4rem, 8vw, 7rem)", "name": "Section" }
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--background)",
+			"text": "var(--wp--preset--color--foreground)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--jakarta)",
+			"fontSize": "var(--wp--preset--font-size--base)",
+			"lineHeight": "1.65"
+		},
+		"elements": {
+			"link": {
+				"color": { "text": "var(--wp--preset--color--accent)" }
+			},
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--manrope)",
+					"fontWeight": "700",
+					"lineHeight": "1.15"
+				}
+			}
+		}
+	}
+}
