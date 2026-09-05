@@ -71,4 +71,30 @@ $wide_features = array_slice( $features, 4, 2 );
 <?php endif; ?>
 
 <?php
+$story_title   = trim( (string) $about['story_title'] );
+$story_content = trim( (string) $about['story_content'] );
+if ( $story_title || $story_content ) :
+	?>
+<section class="bd-section bd-about-story">
+	<div class="bd-container">
+		<div class="bd-about-story__grid">
+			<div class="bd-about-story__media bd-reveal">
+				<img src="<?php echo esc_url( baydemir_about_story_image_url() ); ?>" alt="" loading="lazy" />
+			</div>
+			<div class="bd-about-story__copy bd-reveal bd-reveal-delay-2">
+				<?php if ( $story_title ) : ?>
+					<h2 class="bd-section-title" style="margin-bottom:1rem;"><?php echo esc_html( $story_title ); ?></h2>
+				<?php endif; ?>
+				<?php if ( $story_content ) : ?>
+					<div class="bd-prose">
+						<?php echo wp_kses_post( wpautop( $story_content ) ); ?>
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
+
+<?php
 get_footer();

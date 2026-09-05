@@ -2490,6 +2490,40 @@ body.bd-lightbox-open {
 	margin: 0 0 1rem;
 }
 
+.bd-about-story {
+	padding-top: 0;
+}
+
+.bd-about-story__grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: clamp(1.5rem, 3vw, 2.75rem);
+	align-items: center;
+}
+
+.bd-about-story__media {
+	border-radius: var(--bd-radius);
+	overflow: hidden;
+	border: 1px solid var(--bd-border);
+	aspect-ratio: 4 / 3;
+	background: var(--bd-surface);
+}
+
+.bd-about-story__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.bd-about-story__copy .bd-section-title {
+	text-align: left;
+}
+
+.bd-about-story__copy .bd-section-title::after {
+	margin-left: 0;
+}
+
 /* —— Quality page —— */
 .bd-quality-hero {
 	position: relative;
@@ -3382,7 +3416,8 @@ body.bd-lightbox-open {
 	.bd-quality-hero__grid,
 	.bd-single-hero__grid,
 	.bd-contact-grid,
-	.bd-footer__grid {
+	.bd-footer__grid,
+	.bd-about-story__grid {
 		grid-template-columns: 1fr;
 	}
 

@@ -124,6 +124,33 @@ $hero_classes    = 'bd-hero' . ( $lights_banner ? ' bd-hero--lights' : '' );
 	</div>
 </section>
 
+<?php
+$home_about      = baydemir_about_settings();
+$home_story_title   = trim( (string) $home_about['story_title'] );
+$home_story_content = trim( (string) $home_about['story_content'] );
+if ( $home_story_title || $home_story_content ) :
+	?>
+<section class="bd-section bd-about-story">
+	<div class="bd-container">
+		<div class="bd-about-story__grid">
+			<div class="bd-about-story__media bd-reveal">
+				<img src="<?php echo esc_url( baydemir_about_story_image_url() ); ?>" alt="" loading="lazy" />
+			</div>
+			<div class="bd-about-story__copy bd-reveal bd-reveal-delay-2">
+				<?php if ( $home_story_title ) : ?>
+					<h2 class="bd-section-title" style="margin-bottom:1rem;"><?php echo esc_html( $home_story_title ); ?></h2>
+				<?php endif; ?>
+				<?php if ( $home_story_content ) : ?>
+					<div class="bd-prose">
+						<?php echo wp_kses_post( wpautop( $home_story_content ) ); ?>
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
+
 <section class="bd-section" style="padding-top:0;">
 	<div class="bd-container">
 		<div style="display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.75rem;flex-wrap:wrap;" class="bd-reveal">

@@ -632,16 +632,22 @@ function baydemir_about_default_features(): array {
  *   eyebrow: string,
  *   content: string,
  *   image_id: int,
+ *   story_title: string,
+ *   story_content: string,
+ *   story_image_id: int,
  *   features: array<int, array{icon: string, title: string, text: string}>
  * }
  */
 function baydemir_about_settings(): array {
 	$defaults = array(
-		'page_title' => 'Hakkımızda',
-		'eyebrow'    => (string) baydemir_mod( 'baydemir_about_title', 'Biz Kimiz?' ),
-		'content'    => baydemir_about_default_content(),
-		'image_id'   => 0,
-		'features'   => baydemir_about_default_features(),
+		'page_title'     => 'Hakkımızda',
+		'eyebrow'        => (string) baydemir_mod( 'baydemir_about_title', 'Biz Kimiz?' ),
+		'content'        => baydemir_about_default_content(),
+		'image_id'       => 0,
+		'story_title'    => __( 'Vizyonumuz', 'baydemir' ),
+		'story_content'  => __( "Kaliteli malzeme, uzman ekip ve şeffaf süreç yönetimiyle yaşanabilir yapılar üretiyoruz.\n\nHer projede güven, estetik ve zamanında teslim ilkelerini bir arada tutarak uzun ömürlü yaşam alanları inşa ediyoruz.", 'baydemir' ),
+		'story_image_id' => 0,
+		'features'       => baydemir_about_default_features(),
 	);
 
 	$stored = get_option( 'baydemir_about', array() );
@@ -665,11 +671,14 @@ function baydemir_about_settings(): array {
 		}
 	}
 
-	$settings               = array_merge( $defaults, $stored );
-	$settings['page_title'] = (string) ( $settings['page_title'] ?? $defaults['page_title'] );
-	$settings['eyebrow']    = (string) ( $settings['eyebrow'] ?? $defaults['eyebrow'] );
-	$settings['content']    = (string) ( $settings['content'] ?? $defaults['content'] );
-	$settings['image_id']   = (int) ( $settings['image_id'] ?? 0 );
+	$settings                    = array_merge( $defaults, $stored );
+	$settings['page_title']      = (string) ( $settings['page_title'] ?? $defaults['page_title'] );
+	$settings['eyebrow']         = (string) ( $settings['eyebrow'] ?? $defaults['eyebrow'] );
+	$settings['content']         = (string) ( $settings['content'] ?? $defaults['content'] );
+	$settings['image_id']        = (int) ( $settings['image_id'] ?? 0 );
+	$settings['story_title']     = (string) ( $settings['story_title'] ?? $defaults['story_title'] );
+	$settings['story_content']   = (string) ( $settings['story_content'] ?? $defaults['story_content'] );
+	$settings['story_image_id']  = (int) ( $settings['story_image_id'] ?? 0 );
 
 	$features = array();
 	$source   = isset( $settings['features'] ) && is_array( $settings['features'] ) ? $settings['features'] : $defaults['features'];
@@ -702,7 +711,22 @@ function baydemir_about_image_url(): string {
 }
 
 /**
- * Ana sayfa Hakkımızda / Biz Kimiz görseli.
+ * Hakkımızda alt bölüm (metin + görsel) image URL.
+ */
+function baydemir_about_story_image_url(): string {
+	$settings = baydemir_about_settings();
+	$id       = (int) $settings['story_image_id'];
+	if ( $id ) {
+		$url = wp_get_attachment_image_url( $id, 'large' );
+		if ( $url ) {
+			return $url;
+		}
+	}
+	return baydemir_placeholder( 'interior', 1000, 800 );
+}
+
+/**
+ * Ana sayfa Biz Kimiz görseli (Hakkımızda sayfasından bağımsız).
  */
 function baydemir_home_about_image_url(): string {
 	$id = (int) baydemir_mod( 'baydemir_home_about_image', 0 );
@@ -713,7 +737,7 @@ function baydemir_home_about_image_url(): string {
 		}
 	}
 
-	return baydemir_about_image_url();
+	return baydemir_placeholder( 'building', 1000, 800 );
 }
 
 /**

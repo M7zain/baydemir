@@ -262,8 +262,8 @@ function baydemir_customize_register( WP_Customize_Manager $wp_customize ): void
 			$wp_customize,
 			'baydemir_home_about_image',
 			array(
-				'label'       => __( 'Biz Kimiz Görseli', 'baydemir' ),
-				'description' => __( 'Ana sayfadaki Hakkımızda bölümü görseli. Boş bırakırsanız Hakkımızda sayfası görseli kullanılır.', 'baydemir' ),
+				'label'       => __( 'Ana Sayfa — Biz Kimiz Görseli', 'baydemir' ),
+				'description' => __( 'Sadece ana sayfadaki Biz Kimiz bölümü. Hakkımızda sayfası görselinden bağımsızdır.', 'baydemir' ),
 				'section'     => 'baydemir_home',
 				'mime_type'   => 'image',
 			)

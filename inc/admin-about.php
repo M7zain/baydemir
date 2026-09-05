@@ -107,6 +107,7 @@ function baydemir_render_about_manager(): void {
 	$icons    = baydemir_about_feature_icons();
 	$image_id = (int) $settings['image_id'];
 	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'medium' ) : '';
+	$story_id  = (int) $settings['story_image_id'];
 	?>
 	<div class="wrap bd-admin bd-about-manager">
 		<div class="bd-admin__header">
@@ -114,7 +115,7 @@ function baydemir_render_about_manager(): void {
 				<p class="bd-admin__eyebrow"><?php esc_html_e( 'Sayfa İçeriği', 'baydemir' ); ?></p>
 				<h1><?php esc_html_e( 'Hakkımızda', 'baydemir' ); ?></h1>
 				<p class="bd-admin__lead">
-					<?php esc_html_e( 'Hakkımızda sayfasındaki metinleri, görseli ve özellik kartlarını buradan düzenleyin.', 'baydemir' ); ?>
+					<?php esc_html_e( 'Hakkımızda sayfasındaki metinleri, görselleri ve özellik kartlarını buradan düzenleyin.', 'baydemir' ); ?>
 				</p>
 			</div>
 			<a class="button" href="<?php echo esc_url( home_url( '/hakkimizda/' ) ); ?>" target="_blank" rel="noopener noreferrer">
@@ -148,7 +149,8 @@ function baydemir_render_about_manager(): void {
 			</div>
 
 			<div class="bd-pm-section">
-				<h3><?php esc_html_e( 'Yan Görsel', 'baydemir' ); ?></h3>
+				<h3><?php esc_html_e( 'Hakkımızda Sayfası — Yan Görsel', 'baydemir' ); ?></h3>
+				<p class="description" style="margin-top:0;"><?php esc_html_e( 'Sadece /hakkimizda/ sayfası. Ana sayfa Biz Kimiz görseli Özelleştir → Ana Sayfa bölümünden ayarlanır.', 'baydemir' ); ?></p>
 				<input type="hidden" id="baydemir_cover" name="image_id" value="<?php echo esc_attr( (string) $image_id ); ?>" />
 				<div class="bd-cover<?php echo $image_id ? '' : ' is-empty'; ?>" id="baydemir-cover-wrap">
 					<div class="bd-cover__preview" id="baydemir-cover-preview">
@@ -192,6 +194,28 @@ function baydemir_render_about_manager(): void {
 				</div>
 			</div>
 
+			<div class="bd-pm-section">
+				<h3><?php esc_html_e( 'Alt Bölüm (Metin + Görsel)', 'baydemir' ); ?></h3>
+				<p class="description" style="margin-top:0;"><?php esc_html_e( 'Kartların altında ve ana sayfada Biz Kimiz altında görünen ek bölüm. Başlık ve metin boşsa bölüm gizlenir.', 'baydemir' ); ?></p>
+				<p>
+					<label for="baydemir_story_title"><strong><?php esc_html_e( 'Başlık', 'baydemir' ); ?></strong></label>
+					<input type="text" class="large-text" id="baydemir_story_title" name="story_title" value="<?php echo esc_attr( $settings['story_title'] ); ?>" />
+				</p>
+				<p>
+					<label for="baydemir_story_content"><strong><?php esc_html_e( 'Metin', 'baydemir' ); ?></strong></label>
+					<textarea id="baydemir_story_content" name="story_content" rows="8" class="large-text"><?php echo esc_textarea( $settings['story_content'] ); ?></textarea>
+					<span class="description"><?php esc_html_e( 'Paragrafları boş satırla ayırın.', 'baydemir' ); ?></span>
+				</p>
+				<?php
+				baydemir_render_contact_media_field(
+					'story_image_id',
+					$story_id,
+					__( 'Bölüm görseli', 'baydemir' ),
+					__( 'Görsel seçilmedi — varsayılan kullanılır', 'baydemir' )
+				);
+				?>
+			</div>
+
 			<p class="submit">
 				<button type="submit" class="button button-primary button-large"><?php esc_html_e( 'Kaydet', 'baydemir' ); ?></button>
 			</p>
@@ -226,17 +250,23 @@ function baydemir_handle_save_about(): void {
 		);
 	}
 
-	$page_title = isset( $_POST['page_title'] ) ? sanitize_text_field( wp_unslash( $_POST['page_title'] ) ) : 'Hakkımızda';
-	$eyebrow    = isset( $_POST['eyebrow'] ) ? sanitize_text_field( wp_unslash( $_POST['eyebrow'] ) ) : '';
-	$content    = isset( $_POST['content'] ) ? sanitize_textarea_field( wp_unslash( $_POST['content'] ) ) : '';
-	$image_id   = isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : 0;
+	$page_title      = isset( $_POST['page_title'] ) ? sanitize_text_field( wp_unslash( $_POST['page_title'] ) ) : 'Hakkımızda';
+	$eyebrow         = isset( $_POST['eyebrow'] ) ? sanitize_text_field( wp_unslash( $_POST['eyebrow'] ) ) : '';
+	$content         = isset( $_POST['content'] ) ? sanitize_textarea_field( wp_unslash( $_POST['content'] ) ) : '';
+	$image_id        = isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : 0;
+	$story_title     = isset( $_POST['story_title'] ) ? sanitize_text_field( wp_unslash( $_POST['story_title'] ) ) : '';
+	$story_content   = isset( $_POST['story_content'] ) ? sanitize_textarea_field( wp_unslash( $_POST['story_content'] ) ) : '';
+	$story_image_id  = isset( $_POST['story_image_id'] ) ? absint( $_POST['story_image_id'] ) : 0;
 
 	$settings = array(
-		'page_title' => $page_title ?: 'Hakkımızda',
-		'eyebrow'    => $eyebrow,
-		'content'    => $content,
-		'image_id'   => $image_id,
-		'features'   => $features,
+		'page_title'     => $page_title ?: 'Hakkımızda',
+		'eyebrow'        => $eyebrow,
+		'content'        => $content,
+		'image_id'       => $image_id,
+		'story_title'    => $story_title,
+		'story_content'  => $story_content,
+		'story_image_id' => $story_image_id,
+		'features'       => $features,
 	);
 
 	update_option( 'baydemir_about', $settings, false );

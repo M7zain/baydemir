@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BAYDEMIR_VERSION', '1.8.6' );
+define( 'BAYDEMIR_VERSION', '1.9.0' );
 define( 'BAYDEMIR_DIR', get_template_directory() );
 define( 'BAYDEMIR_URI', get_template_directory_uri() );
 
