@@ -1319,7 +1319,6 @@ textarea {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: space-between;
 	gap: 1rem;
 	margin: 2rem 0 2.5rem;
 }
@@ -1355,22 +1354,6 @@ textarea {
 .bd-filter.is-active {
 	background: var(--bd-accent);
 	border-color: var(--bd-accent);
-	color: #fff;
-}
-
-.bd-sort {
-	display: flex;
-	align-items: center;
-	gap: 0.6rem;
-	color: var(--bd-muted);
-	font-size: 0.8rem;
-}
-
-.bd-sort select {
-	background: var(--bd-surface);
-	border: 1px solid var(--bd-border-strong);
-	border-radius: 999px;
-	padding: 0.65rem 1rem;
 	color: #fff;
 }
 

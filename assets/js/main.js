@@ -52,8 +52,6 @@
 	function initProjectFilters() {
 		const filters = document.querySelectorAll('[data-project-filter]');
 		const cards = document.querySelectorAll('[data-project-cat]');
-		const sortSelect = document.querySelector('[data-project-sort]');
-		const grid = document.querySelector('.bd-project-grid');
 		if (!filters.length || !cards.length) return;
 
 		filters.forEach((btn) => {
@@ -67,19 +65,6 @@
 				});
 			});
 		});
-
-		if (sortSelect && grid) {
-			sortSelect.addEventListener('change', () => {
-				const items = Array.from(grid.querySelectorAll('[data-project-cat]'));
-				const dir = sortSelect.value;
-				items.sort((a, b) => {
-					const da = parseInt(a.getAttribute('data-date') || '0', 10);
-					const db = parseInt(b.getAttribute('data-date') || '0', 10);
-					return dir === 'asc' ? da - db : db - da;
-				});
-				items.forEach((el) => grid.appendChild(el));
-			});
-		}
 	}
 
 	function initContactForm() {
@@ -275,7 +260,7 @@
 		});
 	}
 
-	/** Project gallery: show two rows at a time, navigate with arrows. */
+	/** Project gallery: show one row at a time, navigate with arrows. */
 	function initGallerySlider() {
 		const root = document.querySelector('[data-bd-gallery-slider]');
 		if (!root) return;
@@ -301,7 +286,7 @@
 		}
 
 		function pageSize() {
-			return Math.max(1, columnCount() * 2);
+			return Math.max(1, columnCount());
 		}
 
 		function pageCount() {

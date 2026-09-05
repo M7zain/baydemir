@@ -20,7 +20,7 @@ if ( ! $thumb ) {
 	$thumb = baydemir_placeholder( 'building', 640, 420 );
 }
 ?>
-<article class="bd-reveal bd-reveal-delay-<?php echo esc_attr( (string) ( ( $delay % 4 ) + 1 ) ); ?>" data-project-cat="<?php echo esc_attr( $cat_slug ); ?>" data-date="<?php echo esc_attr( get_the_date( 'U' ) ); ?>">
+<article class="bd-reveal bd-reveal-delay-<?php echo esc_attr( (string) ( ( $delay % 4 ) + 1 ) ); ?>" data-project-cat="<?php echo esc_attr( $cat_slug ); ?>">
 	<a class="bd-project-card" href="<?php the_permalink(); ?>">
 		<div class="bd-project-card__media">
 			<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />

@@ -52,13 +52,6 @@ get_header();
 				}
 				?>
 			</div>
-			<label class="bd-sort">
-				<span><?php esc_html_e( 'Sıralama', 'baydemir' ); ?></span>
-				<select data-project-sort>
-					<option value="desc"><?php esc_html_e( 'Yeniden Eskiye', 'baydemir' ); ?></option>
-					<option value="asc"><?php esc_html_e( 'Eskiden Yeniye', 'baydemir' ); ?></option>
-				</select>
-			</label>
 		</div>
 	</div>
 </section>
