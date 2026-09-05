@@ -3,6 +3,7 @@
  * Footer template.
  *
  * @package Baydemir
+ * 
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
